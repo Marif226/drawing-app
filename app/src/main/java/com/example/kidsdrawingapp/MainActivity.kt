@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         ib_brush.setOnClickListener {
             showBrushSizeChooserDialog()
         }
+
+        ib_undo.setOnClickListener {
+            drawing_view?.undo()
+        }
     }
 
     private fun showBrushSizeChooserDialog() {

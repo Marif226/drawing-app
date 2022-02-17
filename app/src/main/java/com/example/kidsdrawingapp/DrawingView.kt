@@ -20,6 +20,8 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs){
     private var color = Color.BLACK
     private var canvas: Canvas? = null
     private var mPaths = ArrayList<CustomPath>()
+//    private val moveList: MutableList<Path>? = null
+    private var undoPaths = ArrayList<CustomPath>()
 
     init {
         setUpDrawing()
@@ -79,6 +81,7 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs){
             }
             MotionEvent.ACTION_UP -> {
                 mPaths.add(mDrawPath!!)
+//                moveList?.add(mDrawPath!!)
                 mDrawPath = CustomPath(color, mBrushSize)
             }
             else -> return false
@@ -86,6 +89,10 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs){
         invalidate()
 
         return true
+    }
+
+    override fun performClick(): Boolean {
+        return super.performClick()
     }
 
     fun setSizeForBrush(newSize: Float) {
@@ -97,6 +104,13 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs){
     fun setColor(newColor: String) {
         color = Color.parseColor(newColor)
         mDrawPaint!!.color = color
+    }
+
+    fun undo() {
+        if (mPaths.size > 0) {
+            undoPaths?.add(mPaths.removeAt(mPaths.size - 1))
+            invalidate()
+        }
     }
 
 }

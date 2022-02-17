@@ -70,6 +70,19 @@
     </LinearLayout>
 
     <ImageButton
+        android:id="@+id/ib_undo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_undo"
+        android:contentDescription="eraser image"
+        android:scaleType="fitXY"
+        tools:ignore="UsingOnClickInXml"
+        app:layout_constraintRight_toLeftOf="@id/ib_brush"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <ImageButton
         android:id="@+id/ib_brush"
         android:layout_width="50dp"
         android:layout_height="50dp"
